@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>DiaouneCryptage</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    /* NAVBAR Personnalisée */
+    .navbar-custom {
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 0.5rem 1rem;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .navbar-custom.scrolled {
+      background-color: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    .navbar-brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #007bff !important;
+      display: flex;
+      align-items: center;
+      margin: 0;
+    }
+    .navbar-brand i {
+      margin-right: 6px;
+    }
+    .nav {
+      display: flex;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .nav-link {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #333 !important;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s;
+      padding: 0.5rem 0;
+    }
+    .nav-link i {
+      margin-right: 6px;
+    }
+    .nav-link:hover {
+      color: #007bff !important;
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      position: relative;
+      height: 80vh;
+      background: linear-gradient(135deg, #007bff 0%, #00d4ff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-top: 3.5rem;
+      color: #fff;
+      padding: 0 15px;
+    }
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+      opacity: 0.3;
+      z-index: -1;
+    }
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .hero-section p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+    .cta-button {
+      font-size: 1rem;
+      padding: 12px 25px;
+      background-color: #007bff;
+      border: none;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .cta-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* STEPS SECTION */
+    .steps-section {
+      background-color: #f1f1f1;
+      padding: 60px 0;
+    }
+    .steps-section .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #333;
+    }
+    .step-box {
+      background: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      text-align: center;
+      height: 100%;
+    }
+    .step-box:hover {
+      transform: translateY(-5px);
+    }
+    .step-icon {
+      font-size: 2.5rem;
+      color: #007bff;
+      margin-bottom: 15px;
+    }
+    .step-box h4 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .step-box p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* FORM SECTION */
+    .form-section {
+      background-color: #fff;
+      padding: 60px 0;
+    }
+    .form-section .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #333;
+    }
+    .form-section form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .form-section .form-control {
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+    .form-section .btn-primary {
+      background-color: #007bff;
+      border: none;
+      font-size: 0.9rem;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    .form-section .btn-primary:hover {
+      background-color: #0056b3;
+    }
+    .result-display {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    /* ABOUT SECTION */
+    .about-section {
+      background-color: #f9f9f9;
+      padding: 60px 0;
+    }
+    .about-section .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #333;
+    }
+    .about-section p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 0.9rem;
+      color: #555;
+      text-align: center;
+    }
+
+    /* CONTACT SECTION */
+    .contact-section {
+      background-color: #fff;
+      padding: 60px 0;
+    }
+    .contact-section .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #333;
+    }
+    .contact-section form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .contact-section .form-control {
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    .contact-section .btn-primary {
+      background-color: #007bff;
+      border: none;
+      font-size: 0.9rem;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    .contact-section .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    /* HISTORIQUE SECTION */
+    .historique-section {
+      background-color: #fff;
+      padding: 60px 0;
+      margin-top: 40px;
+      border-top: 4px solid #007bff;
+    }
+    .historique-section .section-title {
+      text-align: center;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #007bff;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .historique-section .section-title::after {
+      content: "";
+      width: 80px;
+      height: 4px;
+      background-color: #007bff;
+      display: block;
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+    .historique-section table {
+      margin-top: 20px;
+    }
+
+    /* FOOTER */
+    .footer {
+      background-color: #333;
+      color: #ccc;
+      padding: 20px 0;
+      text-align: center;
+    }
+    .footer a {
+      color: #007bff;
+      transition: color 0.3s;
+    }
+    .footer a:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR FIXE, HAUTEUR RÉDUITE -->
+  <nav class="navbar-custom fixed-top">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-lock"></i> DiaouneCryptage
+      </a>
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#hero-section">
+            <i class="fas fa-home"></i> Accueil
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#steps-section">
+            <i class="fas fa-cogs"></i> Comment ça marche
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#form-section">
+            <i class="fas fa-key"></i> Cryptage
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about-section">
+            <i class="fas fa-info-circle"></i> À propos
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact-section">
+            <i class="fas fa-envelope"></i> Contact
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#historique-section">
+            <i class="fas fa-history"></i> Historique
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="hero-section" class="hero-section">
+    <div class="container">
+      <h1>Bienvenue sur DiaouneCryptage</h1>
+      <p class="lead">Cryptez et décryptez vos messages en toute sécurité avec notre outil de chiffrement César.</p>
+      <button class="cta-button" onclick="location.href='#form-section'">Commencez à Crypter</button>
+    </div>
+  </section>
+
+  <!-- STEPS SECTION -->
+  <section id="steps-section" class="steps-section">
+    <div class="container">
+      <h2 class="section-title">Comment ça marche ?</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="step-box">
+            <div class="step-icon">
+              <i class="fas fa-pencil-alt"></i>
+            </div>
+            <h4>1. Entrez votre message</h4>
+            <p>Saisissez le message que vous souhaitez crypter ou décrypter.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="step-box">
+            <div class="step-icon">
+              <i class="fas fa-key"></i>
+            </div>
+            <h4>2. Choisissez une clé</h4>
+            <p>Définissez la clé de chiffrement pour crypter ou décrypter votre message.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="step-box">
+            <div class="step-icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <h4>3. Choisissez l'opération à effectuer</h4>
+            <p>Obtenez votre message crypté ou décrypté en cliquant sur Exécuter.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM SECTION -->
+  <section id="form-section" class="form-section">
+    <div class="container">
+      <h2 class="section-title">Cryptage/Décryptage</h2>
+      <form [formGroup]="cryptageForm" (ngSubmit)="executerOperation()">
+        <div class="mb-3">
+          <label for="message" class="form-label">Message :</label>
+          <textarea id="message" class="form-control" formControlName="message" rows="4"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="clee" class="form-label">Clé :</label>
+          <input id="clee" type="number" class="form-control" formControlName="clee" />
+        </div>
+        <div class="mb-3">
+          <label for="type" class="form-label">Type d'opération :</label>
+          <select id="type" class="form-select" formControlName="type">
+            <option value="Cryptage">Cryptage</option>
+            <option value="Décryptage">Décryptage</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Exécuter</button>
+      </form>
+      <div class="result-display mt-4">
+        <h3>Résultat :</h3>
+        <p>{{ resultat }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about-section" class="about-section">
+    <div class="container">
+      <h2 class="section-title">À propos de DiaouneCryptage</h2>
+      <p>DiaouneCryptage est une application simple et rapide qui vous permet de crypter et décrypter vos messages personnels en utilisant l'algorithme de chiffrement César.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact-section" class="contact-section">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="mb-4 text-center">Vous avez des questions ou des suggestions ? N'hésitez pas à nous contacter :</p>
+      <form>
+        <div class="mb-3">
+          <label for="name" class="form-label">Nom :</label>
+          <input type="text" class="form-control" id="name">
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email :</label>
+          <input type="email" class="form-control" id="email">
+        </div>
+        <div class="mb-3">
+          <label for="messageContact" class="form-label">Message :</label>
+          <textarea class="form-control" id="messageContact" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- HISTORIQUE SECTION -->
+  <section id="historique-section" class="historique-section">
+    <div class="container">
+      <h2 class="section-title">Historique des opérations</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Type</th>
+              <th>Message</th>
+              <th>Clé</th>
+              <th>Résultat</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let message of messages">
+              <td>{{ message.id }}</td>
+              <td>{{ message.type }}</td>
+              <td>{{ message.message }}</td>
+              <td>{{ message.clee }}</td>
+              <td>{{ message.resultat }}</td>
+              <td>{{ message.date | date: 'dd/MM/yyyy HH:mm' }}</td>
+              <td>
+                <button class="btn btn-danger btn-sm" (click)="supprimerOperation(message.id!)">
+                  <i class="fas fa-trash"></i> Supprimer
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 DiaouneCryptage. Tous droits réservés.</p>
+      <p><a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a></p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script>
+    // Effet de scroll sur la navbar
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar-custom');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>

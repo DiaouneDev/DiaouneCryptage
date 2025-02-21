@@ -1,0 +1,93 @@
+/* Animation fade-in */
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .animated {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Style général */
+  body {
+    background: #f4f4f9;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  h1, h3 {
+    font-weight: 700;
+  }
+  
+  /* Section d'introduction */
+  .container-fluid.bg-dark {
+    // background-image: url('assets/images/bg-header.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  
+  .display-4 {
+    font-size: 3rem;
+    font-weight: 600;
+  }
+  
+  .lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+  }
+  
+  /* Card Form Style */
+  .card {
+    border-radius: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-control, .form-select {
+    border-radius: 10px;
+    padding: 10px;
+  }
+  
+  button.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+  
+  button.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  
+  /* Section Footer */
+  footer {
+    background-color: #343a40;
+    color: #fff;
+  }
+  
+  footer p {
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  /* Text Section */
+  .text-info {
+    color: #17a2b8;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  /* Button hover effect */
+  button:disabled {
+    background-color: #b0b0b0;
+    cursor: not-allowed;
+  }
+  
